@@ -5,7 +5,6 @@
 ## 表單檔案上傳
 
 最基本的應用是建立一個表單來提供上傳的功能，在HTML的表單中，有提供了一個file的類別來專門處理二進位檔案，由於是二進位檔案，因此需要特別處理才能在網路中傳輸，所以我們要在表單中加入enctype的屬性，並指明要編碼的種類：
-
 ```html
 <!--其中的multipart/form-data
     就是指明採用二進位的方式直接傳送表單的欄位內容-->
@@ -35,16 +34,16 @@
 ```
 ### 錯誤代碼(err code):
 
-|code|status|descrption|
-|---|----|----|
-|0|UPLOAD_ERR_OK|上傳正常，且完成上傳|
-|1|UPLOAD_ERR_INI_SIZE|上傳失敗，檔案size超過php.ini裡所設定的可上傳(upload_max_filesize)大小|
-|2|UPLOAD_ERR_FORM_SIZE|上傳失敗，檔案size超過php.ini裡所設定的可接受檔案(MAX_FILE)SIZE)大小|
-|3|UPLOAD_ERR_PARTIAL|上傳失敗，僅有部份檔案上傳完成|
-|5|UPLOAD_ERR_NO_FILE|上傳失敗，因為沒有檔案上傳|
-|6|UPLOAD_ERR_NO_TMP_DIR|上傳失敗，因為找不到tmp資料夾|
-|7|UPLOAD_ERR_CANT_WRITE|要將檔案寫入磁碟時失敗|
-|8|UPLOAD_ERR_EXTENSION|某些擴充模組影響了上傳功能造成上傳失敗|
+| code | status                | descrption                                                             |
+| ---- | --------------------- | ---------------------------------------------------------------------- |
+| 0    | UPLOAD_ERR_OK         | 上傳正常，且完成上傳                                                   |
+| 1    | UPLOAD_ERR_INI_SIZE   | 上傳失敗，檔案size超過php.ini裡所設定的可上傳(upload_max_filesize)大小 |
+| 2    | UPLOAD_ERR_FORM_SIZE  | 上傳失敗，檔案size超過php.ini裡所設定的可接受檔案(MAX_FILE)SIZE)大小   |
+| 3    | UPLOAD_ERR_PARTIAL    | 上傳失敗，僅有部份檔案上傳完成                                         |
+| 5    | UPLOAD_ERR_NO_FILE    | 上傳失敗，因為沒有檔案上傳                                             |
+| 6    | UPLOAD_ERR_NO_TMP_DIR | 上傳失敗，因為找不到tmp資料夾                                          |
+| 7    | UPLOAD_ERR_CANT_WRITE | 要將檔案寫入磁碟時失敗                                                 |
+| 8    | UPLOAD_ERR_EXTENSION  | 某些擴充模組影響了上傳功能造成上傳失敗                                 |
 
 通常我們會先建立一些相關的目錄來存放這些檔案，在判斷檔案上傳成功並且已經存放在暫存目錄後，我們會把檔案搬移到指定的目錄下方便日後的控管。
 
@@ -76,13 +75,13 @@ if(!empty($_FILES['file']['tmp_name'])){
 
 在進行對檔案的進一步處理時，我們需要先對檔案的狀況進行判斷，以確認要處理的資源符合需要：
 
-|函式|功能|回傳值|
-|---|---|---|
-|is_dir()|判斷是否為目錄|true/false|
-|is_file()|判斷是否為檔案|true/false|
-|is_executable()|判斷是否為可執行檔案|true/false|
-|is_readable()|判斷檔案權限是否為可讀|true/false|
-|is_writeable()|判斷檔案權是否為可寫入|true/false|
+| 函式            | 功能                   | 回傳值     |
+| --------------- | ---------------------- | ---------- |
+| is_dir()        | 判斷是否為目錄         | true/false |
+| is_file()       | 判斷是否為檔案         | true/false |
+| is_executable() | 判斷是否為可執行檔案   | true/false |
+| is_readable()   | 判斷檔案權限是否為可讀 | true/false |
+| is_writeable()  | 判斷檔案權是否為可寫入 | true/false |
 
 ---
 
@@ -90,18 +89,18 @@ if(!empty($_FILES['file']['tmp_name'])){
 
 如果上傳的是純文字的檔案，並且打算將檔案內容匯入資料庫或另作處理時，需要透過一些檔案專用的指令來取得內容並加以處理：
 
-|函式|功能|回傳值|
-|---|---|---|
-|fopen()|開啟一個檔案|資源|
-|feof()|判斷檔案結尾|true/false|
-|fwrite()|寫入內容|int|
-|fclose()|關閉檔案|true/false|
-|fgetc()|取得一個字元內容|string|
-|fgets()|取得一行內容|string|
-|fgetcsv()|取得csv檔案一行內容|array|
-|file()|讀入整個檔案，並以行為單位存入陣列|array|
-|fread()|以二進位方式讀入檔案字元|string|
-|filesize()|取得檔案大小|int|
+| 函式       | 功能                               | 回傳值     |
+| ---------- | ---------------------------------- | ---------- |
+| fopen()    | 開啟一個檔案                       | 資源       |
+| feof()     | 判斷檔案結尾                       | true/false |
+| fwrite()   | 寫入內容                           | int        |
+| fclose()   | 關閉檔案                           | true/false |
+| fgetc()    | 取得一個字元內容                   | string     |
+| fgets()    | 取得一行內容                       | string     |
+| fgetcsv()  | 取得csv檔案一行內容                | array      |
+| file()     | 讀入整個檔案，並以行為單位存入陣列 | array      |
+| fread()    | 以二進位方式讀入檔案字元           | string     |
+| filesize() | 取得檔案大小                       | int        |
 
 ---
 
@@ -109,20 +108,20 @@ if(!empty($_FILES['file']['tmp_name'])){
 
 如果上傳的是網頁用的圖形類檔案，則可以進行額外的圖形處理，比如製作縮圖，加邊框等等：
 
-|函式|功能|回傳值|
-|---|---|---|
-|imagecreatefrompng()|從圖片檔產生新的圖片資源|resource|
-|imagecreatefromjpeg()|從圖片檔產生新的圖片資源|resource|
-|imagecreatefromgif()|從圖片檔產生新的圖片資源|resource|
-|imagecreatetruecolor()|建立一個全彩的圖片資源|resource|
-|imagecopyresampled()|複製並重新取樣圖片，可調整大小(縮放)|true/false|
-|imagejpeg()|輸出jpge檔|true/false|
-|imagepng()|輸出png檔|true/false|
-|imagegif()|輸出gif檔|true/false|
-|imagedestroy()|刪除一個圖形資源|true/false|
-|imagettfbbox()|計算truetype字形的寬高|array|
-|imagettftext()|在圖片中寫入truetype字元|array|
-|imagefill()|填入顏色|true/false|
-|imagecolorallocate()|定義一個顏色|int|
-|imagesetpixel()|畫一個點|true/false|
-|imageline()|畫一條線|true/false|
+| 函式                   | 功能                                 | 回傳值     |
+| ---------------------- | ------------------------------------ | ---------- |
+| imagecreatefrompng()   | 從圖片檔產生新的圖片資源             | resource   |
+| imagecreatefromjpeg()  | 從圖片檔產生新的圖片資源             | resource   |
+| imagecreatefromgif()   | 從圖片檔產生新的圖片資源             | resource   |
+| imagecreatetruecolor() | 建立一個全彩的圖片資源               | resource   |
+| imagecopyresampled()   | 複製並重新取樣圖片，可調整大小(縮放) | true/false |
+| imagejpeg()            | 輸出jpge檔                           | true/false |
+| imagepng()             | 輸出png檔                            | true/false |
+| imagegif()             | 輸出gif檔                            | true/false |
+| imagedestroy()         | 刪除一個圖形資源                     | true/false |
+| imagettfbbox()         | 計算truetype字形的寬高               | array      |
+| imagettftext()         | 在圖片中寫入truetype字元             | array      |
+| imagefill()            | 填入顏色                             | true/false |
+| imagecolorallocate()   | 定義一個顏色                         | int        |
+| imagesetpixel()        | 畫一個點                             | true/false |
+| imageline()            | 畫一條線                             | true/false |
