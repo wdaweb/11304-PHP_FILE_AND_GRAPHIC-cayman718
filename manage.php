@@ -57,11 +57,12 @@ $dirpath="./files";
 //$dir=opendir($dirpath);
 $items=scandir($dirpath);
 $items=array_diff($items,array('.','..'));
-dd($items);
+// dd($items);//顯示陣列
 
 foreach($items as $file){
     echo "<div class='item'>";
     echo "<img src='{$dirpath}/{$file}'>";
+    echo "<a href='del_img.php?file={$file}'>刪除</a>";
     echo "</div>";
 }
 
